@@ -1,4 +1,4 @@
-# Analyse Humanitaire — ONG Burkina Faso (2024)
+# Analyse Humanitaire - ONG Burkina Faso (2024)
 
 Pipeline Python de nettoyage, segmentation et reporting appliqué à un jeu de données humanitaires fictif.
 
@@ -7,7 +7,7 @@ Pipeline Python de nettoyage, segmentation et reporting appliqué à un jeu de d
 ![seaborn](https://img.shields.io/badge/seaborn%20%2F%20matplotlib-visualisation-4C72B0)
 ![Statut](https://img.shields.io/badge/statut-projet%20p%C3%A9dagogique-yellow)
 
-> **⚠️ Données entièrement fictives.** Le jeu de données est généré aléatoirement par le script lui-même (`numpy`, graine fixe = 42) à des fins pédagogiques. Aucun nom, aucune organisation et aucun chiffre ne correspond à une situation, un bénéficiaire ou une ONG réels.
+> ** Données entièrement fictives.** Le jeu de données est généré aléatoirement par le script lui-même (`numpy`, graine fixe = 42) à des fins pédagogiques. Aucun nom, aucune organisation et aucun chiffre ne correspond à une situation, un bénéficiaire ou une ONG réels.
 
 ## Sommaire
 
@@ -55,34 +55,34 @@ projet-ong-burkina-2024/
 
 ## Le jeu de données
 
-### Champs bruts (`ong_burkina_2024.csv`) — 2 800 bénéficiaires (+ 40 doublons intentionnels)
+### Champs bruts (`ong_burkina_2024.csv`) - 2 800 bénéficiaires (+ 40 doublons intentionnels)
 
 | Colonne | Type | Description | Valeurs / plage |
 |---|---|---|---|
-| `id_beneficiaire` | int | Identifiant unique | 1 – 2800 |
-| `nom` | str | Nom complet généré aléatoirement | — |
+| `id_beneficiaire` | int | Identifiant unique | 1 - 2800 |
+| `nom` | str | Nom complet généré aléatoirement | - |
 | `sexe` | str | Sexe | Masculin (48 %), Féminin (52 %) |
-| `age` | int | Âge | 18–75 ans (+ valeurs aberrantes injectées) |
+| `age` | int | Âge | 18-75 ans (+ valeurs aberrantes injectées) |
 | `region` | str | Région d'intervention | Centre, Sahel, Est, Nord, Boucle du Mouhoun |
 | `province` | str | Province rattachée à la région | 3 provinces par région |
 | `statut` | str | Statut du bénéficiaire | Déplacé interne, Réfugié, Communauté hôte, Retourné |
-| `taille_menage` | int | Taille du ménage | 1–11 personnes |
+| `taille_menage` | int | Taille du ménage | 1-11 personnes |
 | `type_aide` | str | Type d'aide distribuée | Aide alimentaire, Kit de survie, Soutien médical, Abri d'urgence |
 | `montant_fcfa` | float | Montant d'une distribution | ≈ 5 000–180 000 FCFA (loi normale, moyenne selon le type d'aide) |
-| `nb_distributions` | int | Nombre de distributions reçues en 2024 | 1–7 |
-| `score_vulnerabilite` | int | Score de vulnérabilité composite | 0–100 |
-| `mois` | int | Mois de la distribution | 1–12 |
+| `nb_distributions` | int | Nombre de distributions reçues en 2024 | 1-7 |
+| `score_vulnerabilite` | int | Score de vulnérabilité composite | 0-100 |
+| `mois` | int | Mois de la distribution | 1-12 |
 
 ### Anomalies injectées volontairement
 
 | Anomalie | Volume | Traitée à l'étape |
 |---|---|---|
-| Doublons exacts | 40 lignes | 3 — `drop_duplicates()` |
-| Âges manquants | 60 valeurs | 3 — imputation par médiane |
-| Provinces manquantes | 45 valeurs | 3 — imputation par `"Inconnue"` |
-| Montants manquants | 30 valeurs | 3 — imputation par médiane |
-| Âges aberrants (-5, 150, 200) | 15 valeurs | 3 — mis à `NaN` puis imputés |
-| Montants négatifs (-1000) | 10 valeurs | 3 — remplacés par la médiane |
+| Doublons exacts | 40 lignes | 3 - `drop_duplicates()` |
+| Âges manquants | 60 valeurs | 3 - imputation par médiane |
+| Provinces manquantes | 45 valeurs | 3 - imputation par `"Inconnue"` |
+| Montants manquants | 30 valeurs | 3 - imputation par médiane |
+| Âges aberrants (-5, 150, 200) | 15 valeurs | 3 - mis à `NaN` puis imputés |
+| Montants négatifs (-1000) | 10 valeurs | 3 - remplacés par la médiane |
 
 ### Colonnes ajoutées après nettoyage (`ong_burkina_propre.csv`)
 
@@ -99,18 +99,18 @@ projet-ong-burkina-2024/
 
 Le script s'exécute de façon linéaire en 8 étapes :
 
-1. **Création du dataset** — génération synthétique de 2 800 bénéficiaires (`numpy`, graine = 42), anomalies volontaires incluses
-2. **Diagnostic** — quantification des doublons, valeurs manquantes et valeurs aberrantes
-3. **Nettoyage** — dédoublonnage, conversion de types (`pd.to_numeric`), imputation par médiane / catégorie, correction des valeurs aberrantes et négatives, standardisation des chaînes
-4. **Colonnes calculées** — création des 6 variables dérivées listées ci-dessus
-5. **Analyse et agrégations** — KPIs globaux, performance par région, performance par type d'aide
-6. **Visualisations** — dashboard 3×3 (9 graphiques) avec `seaborn` / `matplotlib`
-7. **Export** — CSV nettoyé et rapport Excel multi-onglets
-8. **Insights** — génération automatique de 5 constats et recommandations
+1. **Création du dataset** - génération synthétique de 2 800 bénéficiaires (`numpy`, graine = 42), anomalies volontaires incluses
+2. **Diagnostic** - quantification des doublons, valeurs manquantes et valeurs aberrantes
+3. **Nettoyage** - dédoublonnage, conversion de types (`pd.to_numeric`), imputation par médiane / catégorie, correction des valeurs aberrantes et négatives, standardisation des chaînes
+4. **Colonnes calculées** - création des 6 variables dérivées listées ci-dessus
+5. **Analyse et agrégations** - KPIs globaux, performance par région, performance par type d'aide
+6. **Visualisations** - dashboard 3×3 (9 graphiques) avec `seaborn` / `matplotlib`
+7. **Export** - CSV nettoyé et rapport Excel multi-onglets
+8. **Insights** - génération automatique de 5 constats et recommandations
 
 ## Score de vulnérabilité et priorité
 
-Le score de vulnérabilité (0–100) additionne quatre composantes plus un bruit aléatoire, puis est plafonné entre 0 et 100 :
+Le score de vulnérabilité (0-100) additionne quatre composantes plus un bruit aléatoire, puis est plafonné entre 0 et 100 :
 
 | Composante | Règle | Points |
 |---|---|---|
@@ -118,7 +118,7 @@ Le score de vulnérabilité (0–100) additionne quatre composantes plus un brui
 | Taille du ménage | `min(taille × 5, 30)` | 0 à 30 |
 | Statut | Réfugié / Déplacé interne / Retourné / Communauté hôte | +30 / +25 / +15 / +5 |
 | Région | Sahel / Est / autres régions | +20 / +15 / +5 |
-| Bruit aléatoire | — | -5 à +9 |
+| Bruit aléatoire | - | -5 à +9 |
 
 Ce score est ensuite découpé en 4 niveaux (`niveau_vulnerabilite`) qui déterminent directement la priorité d'intervention (`priorite`) :
 
