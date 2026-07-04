@@ -18,7 +18,7 @@ sns.set_theme(style="whitegrid")
 np.random.seed(42)
 
 print("=" * 60)
-print("  ANALYSE HUMANITAIRE — ONG BURKINA FASO 2024")
+print("  ANALYSE HUMANITAIRE  ONG BURKINA FASO 2024")
 print("=" * 60)
 
 
@@ -116,7 +116,7 @@ def creer_dataset():
 
     mois_liste = np.random.choice(range(1, 13), n)
 
-    # Introduire des erreurs réalistes
+    # Introduire des erreur
     df = pd.DataFrame({
         "id_beneficiaire"   : range(1, n+1),
         "nom"               : noms_complets,
@@ -133,7 +133,7 @@ def creer_dataset():
         "mois"              : mois_liste
     })
 
-    # Doublons intentionnels
+    # Doublons 
     doublons = df.iloc[np.random.choice(n, 40, replace=False)].copy()
     df = pd.concat([df, doublons], ignore_index=True)
 
@@ -158,9 +158,9 @@ df_brut = creer_dataset()
 # ============================================================
 # ÉTAPE 2 - DIAGNOSTIC
 # ============================================================
-print("\n" + "─" * 60)
-print("ÉTAPE 2 — DIAGNOSTIC")
-print("─" * 60)
+print("\n" + "-" * 60)
+print("ÉTAPE 2 - DIAGNOSTIC")
+print("-" * 60)
 
 print(f"Lignes totales     : {len(df_brut):,}")
 print(f"Doublons           : {df_brut.duplicated().sum()}")
@@ -181,24 +181,24 @@ print(f"\nÂges aberrants détectés : {len(ages_aberrants)}")
 
 # Détecter montants négatifs
 montants_negatifs = df_brut[df_brut["montant_fcfa"] < 0]
-print(f"Montants négatifs      : {len(montants_negatifs)}")
+print(f"Montants négatifs : {len(montants_negatifs)}")
 
 
 # ============================================================
 # ÉTAPE 3 - NETTOYAGE
 # ============================================================
-print("\n" + "─" * 60)
-print("ÉTAPE 3 — NETTOYAGE")
-print("─" * 60)
+print("\n" + "-" * 60)
+print("ÉTAPE 3 - NETTOYAGE")
+print("-" * 60)
 
 df = df_brut.copy()
 
 # Doublons
 df = df.drop_duplicates()
-print(f"Après doublons      : {len(df):,} lignes")
+print(f"Après doublons : {len(df):,} lignes")
 
 # Types
-df["age"]          = pd.to_numeric(df["age"],          errors="coerce")
+df["age"] = pd.to_numeric(df["age"], errors="coerce")
 df["montant_fcfa"] = pd.to_numeric(df["montant_fcfa"], errors="coerce")
 
 # Âges aberrants --> NaN
@@ -226,25 +226,33 @@ print(f"Valeurs manquantes  : {df.isnull().sum().sum()}")
 # ============================================================
 # ÉTAPE 4 - COLONNES CALCULÉES
 # ============================================================
-print("\n" + "─" * 60)
-print("ÉTAPE 4 — COLONNES CALCULÉES")
-print("─" * 60)
+print("\n" + "-" * 60)
+print("ÉTAPE 4 - COLONNES CALCULÉES")
+print("-" * 60)
 
 # Tranche d'âge
 def tranche_age(age):
-    if age < 25:   return "Jeune adulte (18-24)"
-    elif age < 40: return "Adulte (25-39)"
-    elif age < 60: return "Adulte senior (40-59)"
-    else:          return "Personne âgée (60+)"
+    if age < 25:   
+        return "Jeune adulte (18-24)"
+    elif age < 40:
+        return "Adulte (25-39)"
+    elif age < 60:
+        return "Adulte senior (40-59)"
+    else:         
+        return "Personne âgée (60+)"
 
 df["tranche_age"] = df["age"].apply(tranche_age)
 
 # Catégorie ménage
 def categorie_menage(taille):
-    if taille <= 2:  return "Petit (1-2)"
-    elif taille <= 5: return "Moyen (3-5)"
-    elif taille <= 8: return "Grand (6-8)"
-    else:             return "Très grand (9+)"
+    if taille <= 2: 
+        return "Petit (1-2)"
+    elif taille <= 5:
+        return "Moyen (3-5)"
+    elif taille <= 8: 
+        return "Grand (6-8)"
+    else:             
+        return "Très grand (9+)"
 
 df["categorie_menage"] = df["taille_menage"].apply(categorie_menage)
 
@@ -281,9 +289,9 @@ for col in ["tranche_age", "categorie_menage", "niveau_vulnerabilite",
 # ============================================================
 # ÉTAPE 5 - ANALYSE ET AGRÉGATIONS
 # ============================================================
-print("\n" + "─" * 60)
-print("ÉTAPE 5 — ANALYSE")
-print("─" * 60)
+print("\n" + "-" * 60)
+print("ÉTAPE 5 - ANALYSE")
+print("-" * 60)
 
 # KPIs globaux
 print("=== KPIs GLOBAUX ===")
@@ -312,8 +320,8 @@ print()
 print("=== DISTRIBUTION PAR TYPE D'AIDE ===")
 perf_aide = df.groupby("type_aide").agg(
     nb_beneficiaires=("id_beneficiaire", "count"),
-    budget_total    =("montant_total_recu", "sum"),
-    montant_moyen   =("montant_fcfa", "mean")
+    budget_total =("montant_total_recu", "sum"),
+    montant_moyen =("montant_fcfa", "mean")
 ).round(0).reset_index()
 perf_aide = perf_aide.sort_values("budget_total", ascending=False)
 print(perf_aide.to_string())
@@ -322,18 +330,18 @@ print(perf_aide.to_string())
 # ============================================================
 # ÉTAPE 6 - VISUALISATIONS
 # ============================================================
-print("\n" + "─" * 60)
-print("ÉTAPE 6 — VISUALISATIONS")
-print("─" * 60)
+print("\n" + "-" * 60)
+print("ÉTAPE 6 - VISUALISATIONS")
+print("-" * 60)
 
 couleurs_region = sns.color_palette("Set2", len(df["region"].unique()))
 
-# ── Dashboard principal ──────────────────────────────────────
+# Dashboard principal 
 fig, axes = plt.subplots(3, 3, figsize=(20, 18))
 fig.suptitle("Dashboard Humanitaire - ONG Burkina Faso 2024",
              fontsize=16, fontweight="bold", y=1.01)
 
-# 1 — Bénéficiaires par région
+# 1 Bénéficiaires par région
 perf_r = perf_region.sort_values("beneficiaires", ascending=True)
 axes[0,0].barh(perf_r["region"], perf_r["beneficiaires"],
                color=couleurs_region, edgecolor="white", height=0.6)
@@ -341,7 +349,7 @@ axes[0,0].set_title("Bénéficiaires par région", fontweight="bold")
 axes[0,0].set_xlabel("Nombre de bénéficiaires")
 axes[0,0].grid(True, alpha=0.3, axis="x")
 
-# 2 — Répartition type d'aide
+# 2 - Répartition type d'aide
 repartition_aide = df["type_aide"].value_counts()
 axes[0,1].pie(repartition_aide.values,
               labels=repartition_aide.index,
@@ -351,7 +359,7 @@ axes[0,1].pie(repartition_aide.values,
               wedgeprops={"edgecolor": "white", "linewidth": 2})
 axes[0,1].set_title("Répartition par type d'aide", fontweight="bold")
 
-# 3 — Score vulnérabilité par région
+# 3 - Score vulnérabilité par région
 sns.boxplot(data=df, x="score_vulnerabilite", y="region",
             palette="RdYlGn_r", width=0.5,
             medianprops=dict(color="black", linewidth=2),
@@ -360,7 +368,7 @@ axes[0,2].set_title("Distribution vulnérabilité par région", fontweight="bold
 axes[0,2].set_xlabel("Score de vulnérabilité")
 axes[0,2].set_ylabel("")
 
-# 4 — Budget par région
+# 4 - Budget par région
 perf_b = perf_region.sort_values("budget_total", ascending=True)
 barres = axes[1,0].barh(perf_b["region"],
                          perf_b["budget_total"] / 1_000_000,
@@ -369,7 +377,7 @@ axes[1,0].set_title("Budget total distribué par région (M FCFA)", fontweight="
 axes[1,0].set_xlabel("Millions de FCFA")
 axes[1,0].grid(True, alpha=0.3, axis="x")
 
-# 5 — Niveau de vulnérabilité
+# 5 - Niveau de vulnérabilité
 vuln_counts = df["niveau_vulnerabilite"].value_counts()
 couleurs_vuln = ["#2ecc71", "#f1c40f", "#e67e22", "#e74c3c"]
 axes[1,1].bar(vuln_counts.index, vuln_counts.values,
@@ -381,7 +389,7 @@ axes[1,1].set_title("Répartition par niveau de vulnérabilité", fontweight="bo
 axes[1,1].set_ylabel("Nombre de bénéficiaires")
 axes[1,1].grid(True, alpha=0.3, axis="y")
 
-# 6 — Distribution par statut
+# 6 - Distribution par statut
 statut_counts = df["statut"].value_counts()
 sns.barplot(x=statut_counts.values, y=statut_counts.index,
             palette="Blues_r", edgecolor="white", ax=axes[1,2])
@@ -390,7 +398,7 @@ axes[1,2].set_xlabel("Nombre")
 axes[1,2].set_ylabel("")
 axes[1,2].grid(True, alpha=0.3, axis="x")
 
-# 7 — Évolution mensuelle
+# 7 - Évolution mensuelle
 evol_mois = df.groupby("mois")["id_beneficiaire"].count().reset_index()
 evol_mois.columns = ["mois", "beneficiaires"]
 labels_mois = ["Jan","Fév","Mar","Avr","Mai","Jun",
@@ -410,7 +418,7 @@ axes[2,0].set_ylabel("Nombre de bénéficiaires")
 axes[2,0].set_xticks(range(1, 13))
 axes[2,0].set_xticklabels(labels_mois, rotation=45, fontsize=8)
 
-# 8 — Tranche d'âge par région
+# 8 - Tranche d'âge par région
 pivot_age = df.groupby(["region", "tranche_age"]).size().unstack(fill_value=0)
 pivot_age.plot(kind="bar", stacked=True,
                colormap="Set2", edgecolor="white",
@@ -421,7 +429,7 @@ axes[2,1].set_ylabel("Nombre")
 axes[2,1].tick_params(axis="x", rotation=30)
 axes[2,1].legend(fontsize=7, title="Tranche d'âge", title_fontsize=8)
 
-# 9 — Scatter score vulnérabilité vs montant
+# 9 - Scatter score vulnérabilité vs montant
 sns.scatterplot(data=df, x="score_vulnerabilite", y="montant_fcfa",
                 hue="type_aide", palette="Set2",
                 alpha=0.5, s=40, edgecolor="white",
@@ -443,8 +451,8 @@ print(" Dashboard sauvegardé : dashboard_ong.png")
 # ÉTAPE 7 - EXPORT
 # ============================================================
 print("\n" + "─" * 60)
-print("ÉTAPE 7 — EXPORT")
-print("─" * 60)
+print("ÉTAPE 7 - EXPORT")
+print("-" * 60)
 
 # CSV
 df.to_csv("ong_burkina_propre.csv", index=False, encoding="utf-8")
@@ -462,7 +470,7 @@ with pd.ExcelWriter("rapport_ong_2024.xlsx", engine="openpyxl") as writer:
     critiques.to_excel(writer, sheet_name="Bénéficiaires critiques", index=False)
 
 print("Excel exporté : rapport_ong_2024.xlsx")
-print("CSV exporté   : ong_burkina_propre.csv")
+print("CSV exporté : ong_burkina_propre.csv")
 
 
 # ============================================================
