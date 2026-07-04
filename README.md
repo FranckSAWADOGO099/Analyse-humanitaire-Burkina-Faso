@@ -180,11 +180,11 @@ Le script produit un dashboard de 9 graphiques (`dashboard_ong.png`) :
 
 ### Insights générés automatiquement
 
-1. **Région la plus vulnérable** : le Sahel affiche le score moyen le plus élevé (80,7/100) → prioriser les ressources dans cette région
-2. **Bénéficiaires critiques** : 1 634 bénéficiaires (58,3 %) sont en niveau critique → déclencher des interventions d'urgence ciblées
-3. **Type d'aide dominant** : l'aide alimentaire représente 44,1 % des distributions → diversifier les types d'aide
+1. **Région la plus vulnérable** : le Sahel affiche le score moyen le plus élevé (80,7/100) --> prioriser les ressources dans cette région
+2. **Bénéficiaires critiques** : 1 634 bénéficiaires (58,3 %) sont en niveau critique --> déclencher des interventions d'urgence ciblées
+3. **Type d'aide dominant** : l'aide alimentaire représente 44,1 % des distributions --> diversifier les types d'aide
 4. **Budget total** : 638 632 429 FCFA distribués à 2 803 bénéficiaires, soit 227 838 FCFA en moyenne par bénéficiaire sur l'année
-5. **Ménages vulnérables** : les grands ménages (6 personnes et plus) affichent les scores les plus élevés → adapter la taille des kits à la composition du ménage
+5. **Ménages vulnérables** : les grands ménages (6 personnes et plus) affichent les scores les plus élevés --> adapter la taille des kits à la composition du ménage
 
 ### Fichiers exportés
 
