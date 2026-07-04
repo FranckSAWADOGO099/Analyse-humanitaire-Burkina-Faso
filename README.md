@@ -241,7 +241,7 @@ python analyse_ong_burkina.py
 
 ## Licence et auteur
 
-**Auteur :** Franck SAWADOGO — Data Analyst Intern 
+**Auteur :** Franck SAWADOGO - Data Analyst Intern 
 
 **Contexte :** projet réalisé à des fins d'apprentissage sur un jeu de données synthétique.
 
