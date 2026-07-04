@@ -20,7 +20,6 @@ Pipeline Python de nettoyage, segmentation et reporting appliqué à un jeu de d
 - [Résultats et visualisations](#résultats-et-visualisations)
 - [Installation et exécution](#installation-et-exécution)
 - [Compétences techniques démontrées](#compétences-techniques-démontrées)
-- [Limites connues et pistes d'amélioration](#limites-connues-et-pistes-damélioration)
 - [Licence et auteur](#licence-et-auteur)
 
 ## Contexte
@@ -230,14 +229,6 @@ python analyse_ong_burkina.py
 - Data visualisation multi-graphiques avec `seaborn` / `matplotlib`
 - Reporting automatisé (export Excel multi-onglets, dashboard image)
 - Formulation d'insights orientés décision
-
-## Limites connues et pistes d'amélioration
-
-- **Export PDF** : annoncé dans le périmètre initial du projet, l'import `matplotlib.backends.backend_pdf.PdfPages` est présent en tête de script mais n'est pas encore utilisé — seul le PNG est généré actuellement. C'est l'extension la plus naturelle à ajouter.
-- **Résolution du dashboard** : `dpi=800` sur une figure de 20×18 pouces produit une image d'environ 15 000 × 14 000 pixels (~7 Mo). Une résolution de 150 à 300 dpi suffit largement pour un usage courant (README, rapport) et allège fortement le fichier.
-- **Chemin codé en dur** : `os.chdir()` pointe vers un répertoire Windows spécifique à l'auteur ; à remplacer par un chemin relatif pour la portabilité du projet.
-- **Compatibilité seaborn** : `sns.boxplot()` et `sns.barplot()` utilisent `palette` sans `hue`, ce qui déclenche un avertissement de dépréciation (à corriger avant seaborn 0.14 en assignant `hue` et `legend=False`).
-- **Insights en texte brut** : les 5 insights de l'étape 8 sont affichés en console mais ne sont pas exportés ; les inclure dans un onglet du rapport Excel ou dans un fichier JSON faciliterait leur réutilisation.
 
 ## Licence et auteur
 
