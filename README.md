@@ -1,4 +1,4 @@
-# Analyse Humanitaire - ONG Burkina Faso (2024)
+# Analyse Humanitaire : ONG Burkina Faso
 
 Pipeline Python de nettoyage, segmentation et reporting appliqué à un jeu de données humanitaires fictif.
 
@@ -243,4 +243,4 @@ python analyse_ong_burkina.py
 
 **Auteur :** Franck SAWADOGO — Data Analyst Intern
 **Contexte :** projet réalisé à des fins d'apprentissage sur un jeu de données synthétique.
-**Licence :** non spécifiée — à définir selon l'usage prévu (MIT recommandée en cas de publication sur un dépôt public).
+**Licence :** Projet réalisé à des fins éducatives et de portfolio.
