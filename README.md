@@ -1,4 +1,5 @@
 # Analyse Humanitaire : ONG Burkina Faso
+
 Pipeline Python de nettoyage, segmentation et reporting appliqué à un jeu de données humanitaires fictif.
 
 ![Python](https://img.shields.io/badge/Python-3.x-3776AB?logo=python&logoColor=white)
