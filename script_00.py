@@ -36,7 +36,7 @@ def creer_dataset():
         "Sahel"            : ["Séno", "Soum", "Oudalan"],
         "Est"              : ["Gnagna", "Gourma", "Tapoa"],
         "Nord"             : ["Yatenga", "Zondoma", "Loroum"],
-        "Boucle du Mouhoun": ["Mouhoun", "Banwa", "Nayala"]
+        "Boucle du Mouhoun" : ["Mouhoun", "Banwa", "Nayala"]
     }
     types_aide = ["Aide alimentaire", "Kit de survie",
                   "Soutien médical", "Abri d'urgence"]
