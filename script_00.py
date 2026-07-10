@@ -18,7 +18,7 @@ sns.set_theme(style="whitegrid")
 np.random.seed(42)
 
 print("=" * 60)
-print(" ANALYSE HUMANITAIRE  ONG BURKINA FASO 2024")
+print("ANALYSE HUMANITAIRE  ONG BURKINA FASO 2024")
 print("=" * 60)
 
 
