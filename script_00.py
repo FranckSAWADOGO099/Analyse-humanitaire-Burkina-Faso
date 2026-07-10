@@ -29,7 +29,7 @@ print("=" * 60)
 def creer_dataset():
 
     n = 2800
-
+    
     regions = ["Centre", "Sahel", "Est", "Nord", "Boucle du Mouhoun"]
     provinces = {
         "Centre"           : ["Kadiogo", "Oubritenga", "Ganzourgou"],
