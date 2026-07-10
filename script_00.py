@@ -89,7 +89,7 @@ def creer_dataset():
     montants = {
         "Aide alimentaire" : lambda: round(np.random.normal(45000, 10000), 0),
         "Kit de survie"    : lambda: round(np.random.normal(75000, 15000), 0),
-        "Soutien médical"  : lambda: round(np.random.normal(30000, 8000),  0),
+        "Soutien médical"  : lambda: round(np.random.normal(30000, 8000), 0),
         "Abri d'urgence"   : lambda: round(np.random.normal(120000, 25000), 0)
     }
     montant_liste = np.array([
